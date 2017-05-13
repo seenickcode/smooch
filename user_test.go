@@ -29,7 +29,7 @@ func NewTestSmooch(t *testing.T) *Smooch {
 	if len(appSecret) == 0 {
 		t.Fatalf("please set env var SMOOCH_APP_SECRET to run tests")
 	}
-	s, err := NewSmooch(appKeyID, appSecret)
+	s, err := New(appKeyID, appSecret)
 	if err != nil {
 		t.Fatal(err)
 	}
