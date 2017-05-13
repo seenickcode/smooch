@@ -12,7 +12,7 @@ type Smooch struct {
 	appSecret string
 }
 
-func NewSmooch(appKeyID string, appSecret string) (*Smooch, error) {
+func New(appKeyID string, appSecret string) (*Smooch, error) {
 	if len(appKeyID) == 0 {
 		return nil, fmt.Errorf("Smooch App Key ID is required.")
 	}
