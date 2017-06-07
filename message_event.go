@@ -72,7 +72,9 @@ func (m *MessageEvent) Text() string {
 func (m *MessageEvent) Payloads() []string {
 	items := []string{}
 	for _, msg := range m.Messages {
-		items = append(items, msg.Payload)
+		if len(msg.Payload) > 0 {
+			items = append(items, msg.Payload)
+		}
 	}
 	return items
 }
