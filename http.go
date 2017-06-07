@@ -34,7 +34,7 @@ func httpCallWithHeaders(method string, url string, body io.Reader, headers map[
 	//fmt.Printf(">>>>>>>>>>>> %+v", req)
 	resp, err := client.Do(req)
 	if resp == nil {
-		err = fmt.Errorf("HTTP request failed for request %+v: response as nil", req)
+		err = fmt.Errorf("HTTP request failed for request %+v: response body is blank", req)
 		return
 	}
 	if resp.Body != nil {
