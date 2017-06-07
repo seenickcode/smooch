@@ -33,6 +33,10 @@ func httpCallWithHeaders(method string, url string, body io.Reader, headers map[
 	client := &http.Client{}
 	//fmt.Printf(">>>>>>>>>>>> %+v", req)
 	resp, err := client.Do(req)
+	if resp == nil {
+		err = fmt.Errorf("HTTP request failed for request %+v: response as nil", req)
+		return
+	}
 	if resp.Body != nil {
 		defer resp.Body.Close()
 	}

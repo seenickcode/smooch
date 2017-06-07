@@ -24,6 +24,13 @@ func TestTexts(t *testing.T) {
 		s.NewAppAuthToken())
 	assert.NoError(err)
 
+	// NOTE not currently working. submitted support ticket
+	// send a message with inline image syntax https://goo.gl/N0LsxE
+	err = SendTextMessage(u1.ID,
+		"![](https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg)",
+		s.NewAppAuthToken())
+	assert.NoError(err)
+
 	// send an image
 	err = SendImageMessage(u1.ID,
 		fmt.Sprintf("Test image %s", RandomStringWithLength(5)),
