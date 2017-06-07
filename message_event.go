@@ -18,6 +18,7 @@ type MessageEvent struct {
 		ID       string  `json:"_id"`
 		Type     string  `json:"type"`
 		Text     string  `json:"text"`
+		Payload  string  `json:"payload"`
 		Role     string  `json:"role"`
 		AuthorID string  `json:"authorId"`
 		Name     string  `json:"name"`
@@ -45,10 +46,11 @@ type MessageEvent struct {
 }
 
 func NewMessageEventFromRequest(r *http.Request) (m *MessageEvent, err error) {
-	body, err := ioutil.ReadAll(r.Body)
+	data, err := ioutil.ReadAll(r.Body)
+	//fmt.Printf(">>>>>>>>>> %v", string(data))
 	var obj MessageEvent
-	if len(string(body)) > 0 {
-		if err := json.Unmarshal(body, &obj); err != nil {
+	if len(string(data)) > 0 {
+		if err := json.Unmarshal(data, &obj); err != nil {
 			return nil, err
 		}
 		m = &obj
@@ -65,6 +67,14 @@ func (m *MessageEvent) Text() string {
 		parts = append(parts, msg.Text)
 	}
 	return strings.Join(parts, "\n")
+}
+
+func (m *MessageEvent) Payloads() []string {
+	items := []string{}
+	for _, msg := range m.Messages {
+		items = append(items, msg.Payload)
+	}
+	return items
 }
 
 func (m MessageEvent) UserID() string {

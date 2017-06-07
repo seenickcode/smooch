@@ -31,7 +31,7 @@ func httpCallWithHeaders(method string, url string, body io.Reader, headers map[
 		req.Header.Add(k, v)
 	}
 	client := &http.Client{}
-	//fmt.Printf(">>>>>>>>>>>> %+v", req)
+
 	resp, err := client.Do(req)
 	if resp == nil {
 		err = fmt.Errorf("HTTP request failed for request %+v: response body is blank", req)
@@ -45,6 +45,7 @@ func httpCallWithHeaders(method string, url string, body io.Reader, headers map[
 		return
 	}
 	data, err = ioutil.ReadAll(resp.Body)
+	//fmt.Printf(">>>>>>>>>>>> %+v", string(data))
 	status = resp.StatusCode
 	return
 }
