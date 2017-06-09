@@ -27,6 +27,43 @@ type MessageEvent struct {
 			Type string `json:"type"`
 		} `json:"source"`
 	} `json:"messages"`
+	Postbacks []struct {
+		Action struct {
+			Text    string `json:"text"`
+			Payload string `json:"payload"`
+			ID      string `json:"_id"`
+			URI     string `json:"uri"`
+			Type    string `json:"type"`
+		} `json:"action"`
+		Message struct {
+			Text     string  `json:"text"`
+			Type     string  `json:"type"`
+			Role     string  `json:"role"`
+			Received float64 `json:"received"`
+			Actions  []struct {
+				Text    string `json:"text"`
+				Payload string `json:"payload"`
+				ID      string `json:"_id"`
+				URI     string `json:"uri"`
+				Type    string `json:"type"`
+			} `json:"actions"`
+			AuthorID  string `json:"authorId"`
+			AvatarURL string `json:"avatarUrl"`
+			ID        string `json:"_id"`
+			Source    struct {
+				Type string `json:"type"`
+			} `json:"source"`
+		} `json:"message"`
+	} `json:"postbacks"`
+	Actions []struct {
+		Action struct {
+			ID      string `json:"_id"`
+			Text    string `json:"text"`
+			Payload string `json:"payload"`
+			URI     string `json:"uri"`
+			Type    string `json:"type"`
+		} `json:"action"`
+	}
 	AppUser struct {
 		ID        string `json:"_id"`
 		UserID    string `json:"userId"`
